@@ -47,7 +47,7 @@ def get_file(url, filename):
     output.close()
 
 def main():
-    print("Downloads 3.1 database")
+    print("Downloads 3.1 Wordnet database for Catalan WordNet 3.0 synset")
 
     ids = read_synset30_ids()
 
