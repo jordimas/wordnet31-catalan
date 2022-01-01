@@ -59,7 +59,7 @@ def main():
     downloaded = 0
     for id in ids:
         id = id.strip()
-        filename = f"{data_folder}/{id}"
+        filename = f"{data_folder}/{id}.json"
         if os.path.isfile(filename):
             existed += 1
             continue 
