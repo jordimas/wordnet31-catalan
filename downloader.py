@@ -59,7 +59,7 @@ def main():
 
     ids = read_synset30_ids()
 
-    data_folder = 'data'
+    data_folder = 'downloaded'
     if not os.path.exists(data_folder):
         os.makedirs(data_folder)
 
