@@ -37,14 +37,22 @@ def read_synset30_ids():
     return sysnet_ids
 
 def get_file(url, filename):
-    msg = 'Downloading file \'{0}\' to {1}'.format(url, filename)
-    print(msg)
 
     req = Request(url, headers={'User-Agent': 'Mozilla/5.0'})
     infile = urlopen(req)
+
+    content = infile.read()
+    if len(content) < 20:
+        msg = 'File too small \'{0}\' to {1}'.format(url, filename)
+        print(msg)
+        return
+
     output = open(filename, 'wb')
-    output.write(infile.read())
+    output.write()
     output.close()
+    msg = 'Downloaded file \'{0}\' to {1}'.format(url, filename)
+    print(msg)
+
 
 def main():
     print("Downloads 3.1 Wordnet database for Catalan WordNet 3.0 synset")
