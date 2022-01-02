@@ -51,7 +51,11 @@ def main():
     print("Read individual jsons and produce a single json")
     terms = []
 
-    for filename in find('data/', '*.json'):
+    output_folder = 'produced'
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+
+    for filename in find('downloaded/', '*.json'):
         entry = load_json(filename)
 
         if entry is None:
@@ -67,14 +71,14 @@ def main():
 
         terms.append(term)
     
-    with open('terms.json', 'w') as outfile:
+    with open(f'{output_folder}/terms.json', 'w') as outfile:
         json.dump(terms, outfile, indent=4, ensure_ascii=False)
 
-    with open('words.txt', 'w') as outfile:
+    with open(f'{output_folder}/words.txt', 'w') as outfile:
         for term in terms:
             outfile.write(f"{term}\n")
 
-    with open('synset_ids_31.txt', 'w') as outfile:
+    with open(f'{output_folder}/synset_ids_31.txt', 'w') as outfile:
         for term in terms:
             outfile.write(f"{term['id']} - {term['subject']}\n")
 
