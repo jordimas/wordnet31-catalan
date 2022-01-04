@@ -61,10 +61,14 @@ def main():
         if entry is None:
             continue
 
+        sysnet30_id = os.path.basename(filename).replace('.json', '')
+
         entry = entry[0]
         term = {}
         term['id'] = entry['id']
         term['subject'] = entry['subject']
+        term['pos'] = entry['pos']
+        term['sysnet30_id'] = sysnet30_id
 
         if 'cat' in entry['foreign']:
             term['ca'] = entry['foreign']['cat']
@@ -80,7 +84,7 @@ def main():
 
     with open(f'{output_folder}/synset_ids_31.txt', 'w') as outfile:
         for term in terms:
-            outfile.write(f"{term['id']} - {term['subject']}\n")
+            outfile.write(f"{term['id']}\t{term['sysnet30_id']}\t{term['subject']}\t{term['pos']}\n")
 
     print(f"Written {len(terms)}")
 
